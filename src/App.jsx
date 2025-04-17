@@ -22,7 +22,13 @@ function App() {
         {/* Hero Section */}
         <section id="home" className="glass-card text-center py-16 mb-12">
           <div className="max-w-4xl mx-auto">
-            <div className="w-32 h-32 bg-gray-600 rounded-full mx-auto mb-6"></div> {/* Placeholder for profile picture */}
+            {/* Sample Picture Placeholder - Replace with your own image */}
+            <div
+              className="w-32 h-32 bg-gray-400 rounded-full mx-auto mb-6 flex items-center justify-center text-white profile-pic"
+              style={{ backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')", backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
+             
+            </div>
             <h1 className="text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
               Irfad K P
             </h1>
