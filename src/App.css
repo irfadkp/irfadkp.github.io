@@ -19,11 +19,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Remove default list styles */
-ul {
-  list-style: none;
-}
-
 /* Responsive adjustments */
 @media (max-width: 640px) {
   .glass-card {
@@ -41,10 +36,38 @@ ul {
   h3 {
     font-size: 1.25rem;
   }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Remove unused logo and card styles */
-#root {
-  margin: 0 auto;
-  text-align: center;
+/* Navigation styling */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+
+/* Footer styling */
+footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust content to prevent overlap with fixed nav */
+main {
+  padding-top: 0; /* Remove padding to avoid extra space */
+}
+
+section {
+  scroll-margin-top: 4rem; /* Offset for anchor links */
 }
