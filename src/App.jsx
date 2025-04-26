@@ -22,7 +22,7 @@ function App() {
             <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">LinkedIn</a>
             <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-colors">Email</a>
             <a href="https://medium.com/@irfad.k.p" className="text-blue-400 hover:text-purple-500 transition-colors">Medium</a>
-            <a href="/resume_irfad.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-colors">Resume</a>
+            <a href="/irfad_portfolio.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-colors">Resume</a>
           </div>
         </div>
       </section>
