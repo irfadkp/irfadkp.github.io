@@ -1,36 +1,149 @@
 import "./App.css";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 text-white">
-      {/* Hero Section */}
-      <section className="hero min-h-screen flex items-center justify-center text-center p-6">
-        <div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 text-white relative overflow-hidden">
+      {/* Parallax Background Layers */}
+      <div
+        className="fixed inset-0 z-0 opacity-30"
+        style={{
+          transform: `translateY(${scrollY * 0.5}px)`,
+          background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
+        }}
+      ></div>
+      <div
+        className="fixed inset-0 z-0 opacity-20"
+        style={{
+          transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.1}px)`,
+          background: 'radial-gradient(circle at 80% 30%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)'
+        }}
+      ></div>
+      <div
+        className="fixed inset-0 z-0 opacity-25"
+        style={{
+          transform: `translateY(${scrollY * 0.7}px) translateX(${-scrollY * 0.1}px)`,
+          background: 'radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%)'
+        }}
+      ></div>
+
+      {/* Animated background particles with parallax */}
+      <div
+        className="particle w-2 h-2 bg-blue-400 fixed top-20 left-10"
+        style={{
+          animationDelay: '0s',
+          transform: `translateY(${scrollY * 0.2}px)`
+        }}
+      ></div>
+      <div
+        className="particle w-3 h-3 bg-purple-400 fixed top-40 right-20"
+        style={{
+          animationDelay: '2s',
+          transform: `translateY(${scrollY * 0.15}px)`
+        }}
+      ></div>
+      <div
+        className="particle w-2 h-2 bg-pink-400 fixed bottom-40 left-1/4"
+        style={{
+          animationDelay: '4s',
+          transform: `translateY(${-scrollY * 0.25}px)`
+        }}
+      ></div>
+      <div
+        className="particle w-4 h-4 bg-blue-500 fixed top-1/3 right-1/3"
+        style={{
+          animationDelay: '1s',
+          transform: `translateY(${scrollY * 0.3}px) rotate(${scrollY * 0.1}deg)`
+        }}
+      ></div>
+      <div
+        className="particle w-2 h-2 bg-purple-500 fixed bottom-20 right-10"
+        style={{
+          animationDelay: '3s',
+          transform: `translateY(${-scrollY * 0.2}px)`
+        }}
+      ></div>
+
+      {/* Floating geometric shapes for motion graphics */}
+      <div
+        className="fixed w-32 h-32 border-2 border-blue-500/20 rounded-lg rotate-45 top-1/4 left-10"
+        style={{
+          transform: `translateY(${scrollY * 0.4}px) rotate(${45 + scrollY * 0.05}deg)`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      ></div>
+      <div
+        className="fixed w-24 h-24 border-2 border-purple-500/20 rounded-full top-1/2 right-20"
+        style={{
+          transform: `translateY(${scrollY * 0.35}px) scale(${1 + scrollY * 0.0005})`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      ></div>
+      <div
+        className="fixed w-40 h-40 border-2 border-pink-500/20 rounded-lg bottom-1/4 right-1/4"
+        style={{
+          transform: `translateY(${-scrollY * 0.3}px) rotate(${scrollY * 0.03}deg)`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      ></div>
+
+      {/* Hero Section with parallax */}
+      <section className="hero min-h-screen flex items-center justify-center text-center p-6 relative z-10">
+        <div
+          style={{
+            transform: `translateY(${scrollY * 0.1}px)`,
+            transition: 'transform 0.1s ease-out'
+          }}
+        >
           <div className="w-40 h-40 bg-gray-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white profile-pic"
                style={{ backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
           </div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
             Irfad K P
           </h1>
-          <p className="text-xl text-gray-300 mb-6">
+          <p className="text-xl text-gray-300 mb-6 animate-section">
             Tech Lead at IBM ISL | Kochi, Kerala, India
           </p>
-          <div className="flex justify-center gap-6 mb-8">
-            <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">LinkedIn</a>
-            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-colors">Email</a>
-            <a href="https://medium.com/@irfad.k.p" className="text-blue-400 hover:text-purple-500 transition-colors">Medium</a>
-            <a href="/irfad_portfolio.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-colors">Resume</a>
+          <div className="flex justify-center gap-6 mb-8 flex-wrap">
+            <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">GitHub</a>
+            <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">LinkedIn</a>
+            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Email</a>
+            <a href="https://medium.com/@irfad.k.p" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Medium</a>
+            <a href="/irfad_portfolio.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Resume</a>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <main className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Contact Section */}
-        <section id="contact" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
+      {/* Main Content with scroll-based reveal */}
+      <main
+        className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10"
+        style={{
+          transform: `translateY(${Math.max(0, (scrollY - 400) * -0.05)}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      >
+        {/* Contact Section with parallax */}
+        <section
+          id="contact"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-1"
+          style={{
+            transform: `translateX(${Math.max(-50, Math.min(0, (scrollY - 600) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 400) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
           <h2 className="text-3xl font-bold mb-4">Contact</h2>
           <p>📍 Kodapparambil House, Valiyaparamba PO, Pulikkal, Malappuram, Kerala, India</p>
           <p className="mt-2">📞 6238280328</p>
@@ -42,14 +155,23 @@ function App() {
           </p>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Top Skills</h2>
+        {/* Skills Section with parallax */}
+        <section
+          id="skills"
+          className="glass-card p-6 rounded-lg shadow-lg animate-right stagger-2"
+          style={{
+            transform: `translateX(${Math.min(50, Math.max(0, -(scrollY - 600) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 400) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Top Skills</h2>
           <div className="flex flex-wrap gap-3">
-            {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill) => (
+            {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill, index) => (
               <span
                 key={skill}
-                className="px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 hover:bg-purple-500/30 transition-colors duration-300"
+                className="skill-tag px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 relative z-10 cursor-pointer"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {skill}
               </span>
@@ -57,9 +179,17 @@ function App() {
           </div>
         </section>
 
-        {/* Certifications Section */}
-        <section id="certifications" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Certifications</h2>
+        {/* Certifications Section with parallax */}
+        <section
+          id="certifications"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-3"
+          style={{
+            transform: `translateX(${Math.max(-50, Math.min(0, (scrollY - 900) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 700) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Certifications</h2>
           <ul className="list-disc list-inside space-y-2">
             {[
               "IBM Cloud Technical Advocate Concepts",
@@ -75,9 +205,17 @@ function App() {
           </ul>
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Experience</h2>
+        {/* Experience Section with parallax */}
+        <section
+          id="experience"
+          className="glass-card p-6 rounded-lg shadow-lg animate-right stagger-4"
+          style={{
+            transform: `translateX(${Math.min(50, Math.max(0, -(scrollY - 900) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 700) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Experience</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold">IBM</h3>
@@ -128,58 +266,90 @@ function App() {
           </div>
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Education</h2>
+        {/* Education Section with parallax */}
+        <section
+          id="education"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-5"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 1400) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1200) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Education</h2>
           <div>
             <h3 className="text-xl font-bold">Rajiv Gandhi Institute of Technology, Kottayam</h3>
             <p className="text-gray-300">Bachelor of Technology - Computer Science and Engineering (2018 - 2022)</p>
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Projects</h2>
+        {/* Projects Section with parallax */}
+        <section
+          id="projects"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section stagger-6"
+          style={{
+            transform: `scale(${Math.min(1, Math.max(0.95, 0.95 + (scrollY - 1400) * 0.00005))})`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1300) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">Instana PLG Acceleration</h3>
-              <p className="text-gray-400">As part of the Product-Led Growth (PLG) initiatives for IBM Instana, an advanced observability tool, I contributed to enhancing user experience and adoption. This involved implementing a seamless self-service onboarding process, enabling users to effortlessly integrate and utilize the platform's capabilities.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-blue-300 mb-2">Instana PLG Acceleration</h3>
+              <p className="text-gray-300 text-sm">As part of the Product-Led Growth (PLG) initiatives for IBM Instana, an advanced observability tool, I contributed to enhancing user experience and adoption. This involved implementing a seamless self-service onboarding process, enabling users to effortlessly integrate and utilize the platform's capabilities.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">RobotShop</h3>
-              <p className="text-gray-400">I managed and deployed a microservices-based demonstration application across Google Cloud Platform (GCP) and Amazon Web Services (AWS). This project showcased Instana’s monitoring and observability features, providing guided tours to highlight the value delivered by IBM Instana to stakeholders and users.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-purple-300 mb-2">RobotShop</h3>
+              <p className="text-gray-300 text-sm">I managed and deployed a microservices-based demonstration application across Google Cloud Platform (GCP) and Amazon Web Services (AWS). This project showcased Instana's monitoring and observability features, providing guided tours to highlight the value delivered by IBM Instana to stakeholders and users.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">SAFER - SOS App</h3>
-              <p className="text-gray-400">An IoT-integrated SOS mobile application designed for women’s safety, alerting the emergency system via a physical trigger from the user.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-pink-300 mb-2">SAFER - SOS App</h3>
+              <p className="text-gray-300 text-sm">An IoT-integrated SOS mobile application designed for women's safety, alerting the emergency system via a physical trigger from the user.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">CCTV Enhancement</h3>
-              <p className="text-gray-400">Improved the resolution of CCTV footage by modifying the SRCAN neural network architecture.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-cyan-300 mb-2">CCTV Enhancement</h3>
+              <p className="text-gray-300 text-sm">Improved the resolution of CCTV footage by modifying the SRCAN neural network architecture.</p>
             </div>
           </div>
         </section>
 
-        {/* Blogs and Publications Section */}
-        <section id="blogs" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Blogs and Publications</h2>
-          <ul className="list-disc list-inside space-y-2">
+        {/* Blogs and Publications Section with parallax */}
+        <section
+          id="blogs"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 1800) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1600) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Blogs and Publications</h2>
+          <ul className="list-disc list-inside space-y-3">
             <li>
-              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-blue-400 hover:text-purple-500 transition-colors">
+              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-blue-400 hover:text-purple-500 transition-all link-hover">
                 Observe a Sample Microservices Application Running on Kubernetes Using Instana
               </a>
             </li>
             <li>
-              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-blue-400 hover:text-purple-500 transition-colors">
+              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-blue-400 hover:text-purple-500 transition-all link-hover">
                 4 Key Metrics to Know When Monitoring Microservices Applications Running on Kubernetes
               </a>
             </li>
           </ul>
         </section>
 
-        {/* Achievements Section */}
-        <section id="achievements" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Achievements</h2>
+        {/* Achievements Section with parallax */}
+        <section
+          id="achievements"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 2000) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1800) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Achievements</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>Finalist, Reboot Kerala Hackathon 2020</li>
             <li>IBM !DEATHON 2024 Runner Up</li>
@@ -189,11 +359,11 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800/70 backdrop-blur-md p-4 text-center sticky bottom-0">
-        <p>© 2025 Irfad K P. All rights reserved.</p>
+      <footer className="bg-gray-800/70 backdrop-blur-md p-4 text-center sticky bottom-0 border-t border-blue-500/20">
+        <p className="text-gray-300">© 2025 Irfad K P. All rights reserved.</p>
         <div className="flex justify-center gap-4 mt-2">
-          <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500">GitHub</a>
-          <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500">LinkedIn</a>
+          <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">GitHub</a>
+          <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">LinkedIn</a>
         </div>
       </footer>
     </div>
