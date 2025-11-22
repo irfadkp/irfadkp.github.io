@@ -15,7 +15,7 @@ function App() {
             Irfad K P
           </h1>
           <p className="text-xl text-gray-300 mb-6">
-            Software Developer at IBM ISL | Kochi, Kerala, India
+            Tech Lead at IBM ISL | Kochi, Kerala, India
           </p>
           <div className="flex justify-center gap-6 mb-8">
             <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">GitHub</a>
@@ -46,7 +46,7 @@ function App() {
         <section id="skills" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-4">Top Skills</h2>
           <div className="flex flex-wrap gap-3">
-            {["Java","React","Docker","Jenkins","Kuebernetes","Git","Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill) => (
+            {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill) => (
               <span
                 key={skill}
                 className="px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 hover:bg-purple-500/30 transition-colors duration-300"
@@ -78,25 +78,52 @@ function App() {
         {/* Experience Section */}
         <section id="experience" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
           <h2 className="text-3xl font-bold mb-4">Experience</h2>
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold">IBM</h3>
-              <p className="text-gray-300">Software Developer | July 2022 - Present (2 years 10 months)</p>
-              <p className="text-gray-400">Kochi, Kerala, India</p>
+              <p className="text-gray-400 text-sm mb-2">3 years 5 months</p>
+              
+              <div className="ml-4 mb-4">
+                <h4 className="text-lg font-semibold text-blue-300">Technical Lead</h4>
+                <p className="text-gray-300 text-sm">May 2025 - Present (7 months)</p>
+                <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
+                <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                  <li>Lead the technical execution and strategy for Product-Led Growth (PLG) initiatives on the Instana platform.</li>
+                  <li>Mentor and guide a development team, overseeing the full lifecycle of new features designed to enhance the user journey, from free trial to conversion.</li>
+                  <li>Collaborate with product and UX teams to define the technical roadmap and ensure engineering efforts directly support business goals.</li>
+                </ul>
+              </div>
+
+              <div className="ml-4">
+                <h4 className="text-lg font-semibold text-blue-300">Software Developer</h4>
+                <p className="text-gray-300 text-sm">July 2022 - May 2025 (2 years 11 months)</p>
+                <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
+                <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
+                  <li>Engineered key features for the Product-Led Growth (PLG) strategy, focusing on improving the free trial experience and product homepage to boost user conversion.</li>
+                  <li>Led the integration of Segment analytics to capture user journey data, providing actionable insights that guided product and UX decisions.</li>
+                  <li>Developed and maintained the "robot-shop" demo application, a vital tool used by the global technical sales team to demonstrate product value.</li>
+                </ul>
+              </div>
             </div>
+
             <div>
-              <h3 className="text-xl font-bold">Career Guidance and Placement Cell, RIT</h3>
-              <p className="text-gray-300">Connecting Developers for Technical Platform Maintenance | 2022 (Unpaid Internship)</p>
+              <h3 className="text-xl font-bold">PLACEMENT CELL RIT KOTTAYAM</h3>
+              <p className="text-gray-300 text-sm">Technical Lead</p>
+              <p className="text-gray-400 text-sm">July 2021 - July 2022 (1 year 1 month)</p>
             </div>
+
             <div>
               <h3 className="text-xl font-bold">Aion Creative Wings</h3>
-              <p className="text-gray-300">Collaborated on E-commerce Mobile Applications (Customer App, Delivery App, Manager App, Kitchen App) using Flutter and Firebase | 2021 (Unpaid Internship)</p>
-              <p className="text-gray-400">Kozhikode, Kerala, India</p>
+              <p className="text-gray-300 text-sm">Product Engineering Intern</p>
+              <p className="text-gray-400 text-sm">September 2020 - July 2022 (1 year 11 months)</p>
+              <p className="text-gray-400 text-sm">Kozhikode, Kerala, India</p>
             </div>
+
             <div>
-              <h3 className="text-xl font-bold">Tomercon Developers</h3>
-              <p className="text-gray-300">Front-End Flutter Developer | 2020 (Unpaid Internship)</p>
-              <p className="text-gray-400">Kozhikode, Kerala, India</p>
+              <h3 className="text-xl font-bold">Tomercon Pvt Ltd</h3>
+              <p className="text-gray-300 text-sm">Flutter Developer</p>
+              <p className="text-gray-400 text-sm">January 2020 - January 2020 (1 month)</p>
+              <p className="text-gray-400 text-sm">Kozhikode, Kerala, India</p>
             </div>
           </div>
         </section>
