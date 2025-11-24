@@ -1,55 +1,94 @@
 import "./App.css";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 text-white">
-      {/* Hero Section */}
-      <section className="hero min-h-screen flex items-center justify-center text-center p-6">
-        <div>
-          <div className="w-40 h-40 bg-gray-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white profile-pic"
-               style={{ backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-300 relative overflow-hidden">
+
+      {/* Hero Section with parallax */}
+      <section className="hero min-h-screen flex items-center justify-center text-center p-6 relative z-50">
+        <div className="relative z-50">
+          <div className="w-40 h-40 rounded-full mx-auto mb-6 profile-pic relative z-20"
+               style={{
+                 backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')",
+                 backgroundSize: 'cover',
+                 backgroundPosition: 'center'
+               }}>
           </div>
-          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
             Irfad K P
           </h1>
-          <p className="text-xl text-gray-300 mb-6">
-            Tech Lead at IBM ISL | Kochi, Kerala, India
+          <p className="text-xl text-gray-400 mb-6 animate-section italic">
+            Tech Lead at IBM ISL
           </p>
-          <div className="flex justify-center gap-6 mb-8">
-            <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-colors">LinkedIn</a>
-            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-colors">Email</a>
-            <a href="https://medium.com/@irfad.k.p" className="text-blue-400 hover:text-purple-500 transition-colors">Medium</a>
-            <a href="/irfad_portfolio.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-colors">Resume</a>
+          <div className="flex justify-center gap-6 mb-8 flex-wrap relative z-30">
+            <a href="https://github.com/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">GitHub</a>
+            <a href="https://linkedin.com/in/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">LinkedIn</a>
+            <a href="mailto:irfadkodapparambil@gmail.com" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Email</a>
+            <a href="https://medium.com/@irfad.k.p" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Medium</a>
+            <a href="/irfad_portfolio.pdf" target="_blank" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Resume</a>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <main className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Contact Section */}
-        <section id="contact" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
+      {/* Main Content with scroll-based reveal */}
+      <main
+        className="container mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10"
+        style={{
+          transform: `translateY(${Math.max(0, (scrollY - 400) * -0.05)}px)`,
+          transition: 'transform 0.1s ease-out'
+        }}
+      >
+        {/* Contact Section with parallax */}
+        <section
+          id="contact"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-1"
+          style={{
+            transform: `translateX(${Math.max(-50, Math.min(0, (scrollY - 600) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 400) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
           <h2 className="text-3xl font-bold mb-4">Contact</h2>
           <p>📍 Kodapparambil House, Valiyaparamba PO, Pulikkal, Malappuram, Kerala, India</p>
           <p className="mt-2">📞 6238280328</p>
           <p className="mt-2">
             Email:{" "}
-            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-colors">
+            <a href="mailto:irfadkodapparambil@gmail.com" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
               irfadkodapparambil@gmail.com
             </a>
           </p>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Top Skills</h2>
+        {/* Skills Section with parallax */}
+        <section
+          id="skills"
+          className="glass-card p-6 rounded-lg shadow-lg animate-right stagger-2"
+          style={{
+            transform: `translateX(${Math.min(50, Math.max(0, -(scrollY - 600) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 400) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Top Skills</h2>
           <div className="flex flex-wrap gap-3">
-            {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill) => (
+            {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill, index) => (
               <span
                 key={skill}
-                className="px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 hover:bg-purple-500/30 transition-colors duration-300"
+                className="skill-tag px-3 py-1 rounded-full relative z-10 cursor-pointer"
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {skill}
               </span>
@@ -57,9 +96,17 @@ function App() {
           </div>
         </section>
 
-        {/* Certifications Section */}
-        <section id="certifications" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Certifications</h2>
+        {/* Certifications Section with parallax */}
+        <section
+          id="certifications"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-3"
+          style={{
+            transform: `translateX(${Math.max(-50, Math.min(0, (scrollY - 900) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 700) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Certifications</h2>
           <ul className="list-disc list-inside space-y-2">
             {[
               "IBM Cloud Technical Advocate Concepts",
@@ -75,16 +122,24 @@ function App() {
           </ul>
         </section>
 
-        {/* Experience Section */}
-        <section id="experience" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Experience</h2>
+        {/* Experience Section with parallax */}
+        <section
+          id="experience"
+          className="glass-card p-6 rounded-lg shadow-lg animate-right stagger-4"
+          style={{
+            transform: `translateX(${Math.min(50, Math.max(0, -(scrollY - 900) * 0.05))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 700) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Experience</h2>
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-bold">IBM</h3>
               <p className="text-gray-400 text-sm mb-2">3 years 5 months</p>
               
               <div className="ml-4 mb-4">
-                <h4 className="text-lg font-semibold text-blue-300">Technical Lead</h4>
+                <h4 className="text-lg font-semibold text-blue-400">Technical Lead</h4>
                 <p className="text-gray-300 text-sm">May 2025 - Present (7 months)</p>
                 <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
                 <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
@@ -95,7 +150,7 @@ function App() {
               </div>
 
               <div className="ml-4">
-                <h4 className="text-lg font-semibold text-blue-300">Software Developer</h4>
+                <h4 className="text-lg font-semibold text-blue-400">Software Developer</h4>
                 <p className="text-gray-300 text-sm">July 2022 - May 2025 (2 years 11 months)</p>
                 <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
                 <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
@@ -128,58 +183,90 @@ function App() {
           </div>
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="bg-gray-800/50 p-6 rounded-lg shadow-lg">
-          <h2 className="text-3xl font-bold mb-4">Education</h2>
+        {/* Education Section with parallax */}
+        <section
+          id="education"
+          className="glass-card p-6 rounded-lg shadow-lg animate-left stagger-5"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 1400) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1200) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Education</h2>
           <div>
             <h3 className="text-xl font-bold">Rajiv Gandhi Institute of Technology, Kottayam</h3>
             <p className="text-gray-300">Bachelor of Technology - Computer Science and Engineering (2018 - 2022)</p>
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Projects</h2>
+        {/* Projects Section with parallax */}
+        <section
+          id="projects"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section stagger-6"
+          style={{
+            transform: `scale(${Math.min(1, Math.max(0.95, 0.95 + (scrollY - 1400) * 0.00005))})`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1300) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">Instana PLG Acceleration</h3>
-              <p className="text-gray-400">As part of the Product-Led Growth (PLG) initiatives for IBM Instana, an advanced observability tool, I contributed to enhancing user experience and adoption. This involved implementing a seamless self-service onboarding process, enabling users to effortlessly integrate and utilize the platform's capabilities.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-blue-400 mb-2">Instana PLG Acceleration</h3>
+              <p className="text-gray-300 text-sm">As part of the Product-Led Growth (PLG) initiatives for IBM Instana, an advanced observability tool, I contributed to enhancing user experience and adoption. This involved implementing a seamless self-service onboarding process, enabling users to effortlessly integrate and utilize the platform's capabilities.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">RobotShop</h3>
-              <p className="text-gray-400">I managed and deployed a microservices-based demonstration application across Google Cloud Platform (GCP) and Amazon Web Services (AWS). This project showcased Instana’s monitoring and observability features, providing guided tours to highlight the value delivered by IBM Instana to stakeholders and users.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-blue-300 mb-2">RobotShop</h3>
+              <p className="text-gray-300 text-sm">I managed and deployed a microservices-based demonstration application across Google Cloud Platform (GCP) and Amazon Web Services (AWS). This project showcased Instana's monitoring and observability features, providing guided tours to highlight the value delivered by IBM Instana to stakeholders and users.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">SAFER - SOS App</h3>
-              <p className="text-gray-400">An IoT-integrated SOS mobile application designed for women’s safety, alerting the emergency system via a physical trigger from the user.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-blue-300 mb-2">SAFER - SOS App</h3>
+              <p className="text-gray-300 text-sm">An IoT-integrated SOS mobile application designed for women's safety, alerting the emergency system via a physical trigger from the user.</p>
             </div>
-            <div className="bg-gray-700 p-4 rounded-lg hover:bg-gray-600 transition-colors">
-              <h3 className="text-xl font-bold">CCTV Enhancement</h3>
-              <p className="text-gray-400">Improved the resolution of CCTV footage by modifying the SRCAN neural network architecture.</p>
+            <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
+              <h3 className="text-xl font-bold text-blue-300 mb-2">CCTV Enhancement</h3>
+              <p className="text-gray-300 text-sm">Improved the resolution of CCTV footage by modifying the SRCAN neural network architecture.</p>
             </div>
           </div>
         </section>
 
-        {/* Blogs and Publications Section */}
-        <section id="blogs" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Blogs and Publications</h2>
-          <ul className="list-disc list-inside space-y-2">
+        {/* Blogs and Publications Section with parallax */}
+        <section
+          id="blogs"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 1800) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1600) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Blogs and Publications</h2>
+          <ul className="list-disc list-inside space-y-3">
             <li>
-              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-blue-400 hover:text-purple-500 transition-colors">
+              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
                 Observe a Sample Microservices Application Running on Kubernetes Using Instana
               </a>
             </li>
             <li>
-              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-blue-400 hover:text-purple-500 transition-colors">
+              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
                 4 Key Metrics to Know When Monitoring Microservices Applications Running on Kubernetes
               </a>
             </li>
           </ul>
         </section>
 
-        {/* Achievements Section */}
-        <section id="achievements" className="bg-gray-800/50 p-6 rounded-lg shadow-lg md:col-span-2">
-          <h2 className="text-3xl font-bold mb-4">Achievements</h2>
+        {/* Achievements Section with parallax */}
+        <section
+          id="achievements"
+          className="glass-card p-6 rounded-lg shadow-lg md:col-span-2 animate-section"
+          style={{
+            transform: `translateY(${Math.max(-30, Math.min(0, (scrollY - 2000) * 0.03))}px)`,
+            opacity: Math.min(1, Math.max(0, (scrollY - 1800) / 200)),
+            transition: 'transform 0.2s ease-out, opacity 0.3s ease-out'
+          }}
+        >
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Achievements</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>Finalist, Reboot Kerala Hackathon 2020</li>
             <li>IBM !DEATHON 2024 Runner Up</li>
@@ -189,11 +276,11 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800/70 backdrop-blur-md p-4 text-center sticky bottom-0">
-        <p>© 2025 Irfad K P. All rights reserved.</p>
+      <footer className="bg-black/80 backdrop-blur-md p-4 text-center relative z-20 border-t border-blue-500/20">
+        <p className="text-gray-400">© 2025 Irfad K P. All rights reserved.</p>
         <div className="flex justify-center gap-4 mt-2">
-          <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500">GitHub</a>
-          <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500">LinkedIn</a>
+          <a href="https://github.com/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">GitHub</a>
+          <a href="https://linkedin.com/in/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">LinkedIn</a>
         </div>
       </footer>
     </div>
