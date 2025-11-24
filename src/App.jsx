@@ -15,113 +15,30 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 text-white relative overflow-hidden">
-      {/* Parallax Background Layers */}
-      <div
-        className="fixed inset-0 z-0 opacity-30"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          background: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
-        }}
-      ></div>
-      <div
-        className="fixed inset-0 z-0 opacity-20"
-        style={{
-          transform: `translateY(${scrollY * 0.3}px) translateX(${scrollY * 0.1}px)`,
-          background: 'radial-gradient(circle at 80% 30%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)'
-        }}
-      ></div>
-      <div
-        className="fixed inset-0 z-0 opacity-25"
-        style={{
-          transform: `translateY(${scrollY * 0.7}px) translateX(${-scrollY * 0.1}px)`,
-          background: 'radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%)'
-        }}
-      ></div>
-
-      {/* Animated background particles with parallax */}
-      <div
-        className="particle w-2 h-2 bg-blue-400 fixed top-20 left-10"
-        style={{
-          animationDelay: '0s',
-          transform: `translateY(${scrollY * 0.2}px)`
-        }}
-      ></div>
-      <div
-        className="particle w-3 h-3 bg-purple-400 fixed top-40 right-20"
-        style={{
-          animationDelay: '2s',
-          transform: `translateY(${scrollY * 0.15}px)`
-        }}
-      ></div>
-      <div
-        className="particle w-2 h-2 bg-pink-400 fixed bottom-40 left-1/4"
-        style={{
-          animationDelay: '4s',
-          transform: `translateY(${-scrollY * 0.25}px)`
-        }}
-      ></div>
-      <div
-        className="particle w-4 h-4 bg-blue-500 fixed top-1/3 right-1/3"
-        style={{
-          animationDelay: '1s',
-          transform: `translateY(${scrollY * 0.3}px) rotate(${scrollY * 0.1}deg)`
-        }}
-      ></div>
-      <div
-        className="particle w-2 h-2 bg-purple-500 fixed bottom-20 right-10"
-        style={{
-          animationDelay: '3s',
-          transform: `translateY(${-scrollY * 0.2}px)`
-        }}
-      ></div>
-
-      {/* Floating geometric shapes for motion graphics */}
-      <div
-        className="fixed w-32 h-32 border-2 border-blue-500/20 rounded-lg rotate-45 top-1/4 left-10"
-        style={{
-          transform: `translateY(${scrollY * 0.4}px) rotate(${45 + scrollY * 0.05}deg)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
-      <div
-        className="fixed w-24 h-24 border-2 border-purple-500/20 rounded-full top-1/2 right-20"
-        style={{
-          transform: `translateY(${scrollY * 0.35}px) scale(${1 + scrollY * 0.0005})`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
-      <div
-        className="fixed w-40 h-40 border-2 border-pink-500/20 rounded-lg bottom-1/4 right-1/4"
-        style={{
-          transform: `translateY(${-scrollY * 0.3}px) rotate(${scrollY * 0.03}deg)`,
-          transition: 'transform 0.1s ease-out'
-        }}
-      ></div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-300 relative overflow-hidden">
 
       {/* Hero Section with parallax */}
-      <section className="hero min-h-screen flex items-center justify-center text-center p-6 relative z-10">
-        <div
-          style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
-            transition: 'transform 0.1s ease-out'
-          }}
-        >
-          <div className="w-40 h-40 bg-gray-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white profile-pic"
-               style={{ backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="hero min-h-screen flex items-center justify-center text-center p-6 relative z-50">
+        <div className="relative z-50">
+          <div className="w-40 h-40 rounded-full mx-auto mb-6 profile-pic relative z-20"
+               style={{
+                 backgroundImage: "url('https://avatars.githubusercontent.com/u/54243898?v=4')",
+                 backgroundSize: 'cover',
+                 backgroundPosition: 'center'
+               }}>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-4 gradient-text">
             Irfad K P
           </h1>
-          <p className="text-xl text-gray-300 mb-6 animate-section">
-            Tech Lead at IBM ISL | Kochi, Kerala, India
+          <p className="text-xl text-gray-400 mb-6 animate-section italic">
+            Tech Lead at IBM ISL
           </p>
-          <div className="flex justify-center gap-6 mb-8 flex-wrap">
-            <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">GitHub</a>
-            <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">LinkedIn</a>
-            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Email</a>
-            <a href="https://medium.com/@irfad.k.p" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Medium</a>
-            <a href="/irfad_portfolio.pdf" target="_blank" className="text-blue-400 hover:text-purple-500 transition-all link-hover">Resume</a>
+          <div className="flex justify-center gap-6 mb-8 flex-wrap relative z-30">
+            <a href="https://github.com/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">GitHub</a>
+            <a href="https://linkedin.com/in/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">LinkedIn</a>
+            <a href="mailto:irfadkodapparambil@gmail.com" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Email</a>
+            <a href="https://medium.com/@irfad.k.p" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Medium</a>
+            <a href="/irfad_portfolio.pdf" target="_blank" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer relative z-30">Resume</a>
           </div>
         </div>
       </section>
@@ -149,7 +66,7 @@ function App() {
           <p className="mt-2">📞 6238280328</p>
           <p className="mt-2">
             Email:{" "}
-            <a href="mailto:irfadkodapparambil@gmail.com" className="text-blue-400 hover:text-purple-500 transition-colors">
+            <a href="mailto:irfadkodapparambil@gmail.com" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
               irfadkodapparambil@gmail.com
             </a>
           </p>
@@ -170,7 +87,7 @@ function App() {
             {["Helm (Software)", "Software Observability", "OpenTelemetry", "Java", "React", "Docker", "Jenkins", "Kubernetes", "Git", "Dart & Flutter", "Python", "HTML & CSS", "CI/CD", "Figma", "SQL"].map((skill, index) => (
               <span
                 key={skill}
-                className="skill-tag px-3 py-1 bg-blue-500/20 rounded-full text-blue-300 relative z-10 cursor-pointer"
+                className="skill-tag px-3 py-1 rounded-full relative z-10 cursor-pointer"
                 style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {skill}
@@ -222,7 +139,7 @@ function App() {
               <p className="text-gray-400 text-sm mb-2">3 years 5 months</p>
               
               <div className="ml-4 mb-4">
-                <h4 className="text-lg font-semibold text-blue-300">Technical Lead</h4>
+                <h4 className="text-lg font-semibold text-blue-400">Technical Lead</h4>
                 <p className="text-gray-300 text-sm">May 2025 - Present (7 months)</p>
                 <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
                 <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
@@ -233,7 +150,7 @@ function App() {
               </div>
 
               <div className="ml-4">
-                <h4 className="text-lg font-semibold text-blue-300">Software Developer</h4>
+                <h4 className="text-lg font-semibold text-blue-400">Software Developer</h4>
                 <p className="text-gray-300 text-sm">July 2022 - May 2025 (2 years 11 months)</p>
                 <p className="text-gray-400 text-sm mb-2">Kochi, Kerala, India</p>
                 <ul className="list-disc list-inside text-gray-300 text-sm space-y-1">
@@ -296,19 +213,19 @@ function App() {
           <h2 className="text-3xl font-bold mb-4 gradient-text">Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
-              <h3 className="text-xl font-bold text-blue-300 mb-2">Instana PLG Acceleration</h3>
+              <h3 className="text-xl font-bold text-blue-400 mb-2">Instana PLG Acceleration</h3>
               <p className="text-gray-300 text-sm">As part of the Product-Led Growth (PLG) initiatives for IBM Instana, an advanced observability tool, I contributed to enhancing user experience and adoption. This involved implementing a seamless self-service onboarding process, enabling users to effortlessly integrate and utilize the platform's capabilities.</p>
             </div>
             <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
-              <h3 className="text-xl font-bold text-purple-300 mb-2">RobotShop</h3>
+              <h3 className="text-xl font-bold text-blue-300 mb-2">RobotShop</h3>
               <p className="text-gray-300 text-sm">I managed and deployed a microservices-based demonstration application across Google Cloud Platform (GCP) and Amazon Web Services (AWS). This project showcased Instana's monitoring and observability features, providing guided tours to highlight the value delivered by IBM Instana to stakeholders and users.</p>
             </div>
             <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
-              <h3 className="text-xl font-bold text-pink-300 mb-2">SAFER - SOS App</h3>
+              <h3 className="text-xl font-bold text-blue-300 mb-2">SAFER - SOS App</h3>
               <p className="text-gray-300 text-sm">An IoT-integrated SOS mobile application designed for women's safety, alerting the emergency system via a physical trigger from the user.</p>
             </div>
             <div className="project-card bg-gray-700/50 p-4 rounded-lg cursor-pointer">
-              <h3 className="text-xl font-bold text-cyan-300 mb-2">CCTV Enhancement</h3>
+              <h3 className="text-xl font-bold text-blue-300 mb-2">CCTV Enhancement</h3>
               <p className="text-gray-300 text-sm">Improved the resolution of CCTV footage by modifying the SRCAN neural network architecture.</p>
             </div>
           </div>
@@ -327,12 +244,12 @@ function App() {
           <h2 className="text-3xl font-bold mb-4 gradient-text">Blogs and Publications</h2>
           <ul className="list-disc list-inside space-y-3">
             <li>
-              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-blue-400 hover:text-purple-500 transition-all link-hover">
+              <a href="https://medium.com/ibm-cloud/observe-a-sample-microservices-application-running-on-kubernetes-using-instana-0d6534dab462" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
                 Observe a Sample Microservices Application Running on Kubernetes Using Instana
               </a>
             </li>
             <li>
-              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-blue-400 hover:text-purple-500 transition-all link-hover">
+              <a href="https://www.ibm.com/think/topics/kubernetes-monitoring-metrics" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">
                 4 Key Metrics to Know When Monitoring Microservices Applications Running on Kubernetes
               </a>
             </li>
@@ -359,11 +276,11 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800/70 backdrop-blur-md p-4 text-center sticky bottom-0 border-t border-blue-500/20">
-        <p className="text-gray-300">© 2025 Irfad K P. All rights reserved.</p>
+      <footer className="bg-black/80 backdrop-blur-md p-4 text-center relative z-20 border-t border-blue-500/20">
+        <p className="text-gray-400">© 2025 Irfad K P. All rights reserved.</p>
         <div className="flex justify-center gap-4 mt-2">
-          <a href="https://github.com/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">GitHub</a>
-          <a href="https://linkedin.com/in/irfadkp" className="text-blue-400 hover:text-purple-500 transition-all link-hover">LinkedIn</a>
+          <a href="https://github.com/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">GitHub</a>
+          <a href="https://linkedin.com/in/irfadkp" className="text-gray-300 hover:text-blue-400 transition-all link-hover cursor-pointer">LinkedIn</a>
         </div>
       </footer>
     </div>
