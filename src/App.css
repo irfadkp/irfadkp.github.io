@@ -3,7 +3,9 @@ body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
   overflow-x: hidden;
-  background: #1f2937;
+  background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
 }
 
 /* High-quality rendering */
@@ -27,6 +29,11 @@ body {
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
   50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.8); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes gradient-shift {
@@ -70,9 +77,10 @@ body {
   position: absolute;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
   top: -50%;
   left: -50%;
+  animation: float 20s infinite linear;
 }
 
 .hero::after {
@@ -80,9 +88,10 @@ body {
   position: absolute;
   width: 150%;
   height: 150%;
-  background: radial-gradient(circle, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 60%);
   bottom: -50%;
   right: -50%;
+  animation: float 15s infinite reverse linear;
 }
 
 /* Gradient text */
@@ -173,15 +182,18 @@ body {
 
 /* Section animations - removed slide-in animations */
 .animate-section {
-  /* No animation */
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-left {
-  /* No animation */
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .animate-right {
-  /* No animation */
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 /* Link hover effects */
@@ -212,12 +224,12 @@ body {
   width: 100%;
 }
 
-/* Floating particles effect */
+/* Floating particles effect - kept minimal */
 .particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
-  opacity: 0.3;
+  opacity: 0.15;
 }
 
 /* Premium project card hover effect */
@@ -299,7 +311,9 @@ nav {
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 nav ul {
